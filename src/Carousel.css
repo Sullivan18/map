@@ -57,7 +57,8 @@ body {
   background-color: #333;
   color: #fff;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .button-overlay1 button:hover {
@@ -86,7 +87,8 @@ body {
   background-color: #333;
   color: #fff;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .button-overlay2 button:hover {
@@ -153,15 +155,6 @@ body {
   opacity: 1;
 }
 
-.close {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  cursor: pointer;
-  font-size: 24px;
-  color: #555;
-}
-
 @keyframes slideUp {
   from {
     transform: translateY(100%);
@@ -172,7 +165,7 @@ body {
 }
 
 .popup-hidden {
-  opacity: 0; 
+  opacity: 0;
 }
 
 .close {
@@ -206,7 +199,6 @@ body {
   margin: 0; /* Remova 'margin: 0 auto;' e adicione a propriedade abaixo */
   margin-right: auto; /* Define a margem direita como automática para posicionar no canto esquerdo */
 }
-
 
 .button-overlay1 button,
 .button-overlay2 button {
@@ -258,11 +250,40 @@ body {
   border: 1px solid #ccc;
   border-radius: 50%;
   transition: all 0.3s ease;
+  /* Adicionando sombra para dar profundidade */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
 .close:hover {
   color: #fff;
   background-color: #e53935;
   border-color: #e53935;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
+
+/* Efeito de transição suave ao focar */
+.close:focus {
+  outline: none;
+}
+
+/* Adicionando animação para o ícone 'x' */
+.close::before,
+.close::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background-color: #aaa;
+  transition: all 0.3s ease;
+}
+
+.close::before {
+  transform: rotate(45deg);
+}
+
+.close::after {
+  transform: rotate(-45deg);
+}
+
 
