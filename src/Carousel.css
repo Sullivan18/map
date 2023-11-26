@@ -1,0 +1,226 @@
+.carousel-wrapper .slick-slider {
+  width: 101.2%;
+  height: 10vh;
+  position: relative;
+}
+
+.carousel-item {
+  width: 105vw;
+  height: 100vh;
+  object-fit: cover;
+  position: relative;
+  z-index: 0;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slick-slide img {
+  outline: none;
+  outline-color: transparent;
+  pointer-events: none;
+}
+
+.slick-slide img {
+  pointer-events: auto;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.centered-button {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button-overlay1 {
+  position: absolute;
+  bottom: 90%;
+  left: 10%;
+  transform: translateX(-50%);
+}
+
+.button-overlay1 button {
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button-overlay1 button:hover {
+  background-color: #555;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+.button-overlay1 button:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.button-overlay2 {
+  position: absolute;
+  bottom: 55%;
+  left: -85%;
+  transform: translateX(-50%);
+}
+
+.button-overlay2 button {
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button-overlay2 button:hover {
+  background-color: #555;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+.button-overlay2 button:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.content {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.hidden-content {
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80vh;
+  background-color: #f1f1f1;
+  transition: transform 0.5s ease;
+  transform: translateY(100%);
+}
+
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.popup-overlay.slide-up {
+  display: flex;
+  animation: slideUp 0.5s ease-in-out;
+  background-color: grey;
+}
+
+.popup {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  width: 90%;
+  height: 90%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow-y: auto;
+  transition: opacity 0.3s ease-out;
+  opacity: 1;
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  color: #555;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.popup-hidden {
+  opacity: 0; 
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  color: #555;
+}
+
+.popup-overlay.slide-down {
+  display: flex;
+  animation: slideDown 0.5s ease-in-out;
+  background-color: grey;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+.popup-image {
+  max-width: 60%; /* Define a largura máxima como 100% do contêiner */
+  max-height: 70vh; /* Define a altura máxima como 80% da altura da janela de visualização */
+  display: block; /* Define a imagem como um bloco para aplicar largura e altura */
+  margin: 0 auto; /* Centraliza horizontalmente a imagem */
+}
+
+.button-overlay1 button,
+.button-overlay2 button {
+  padding: 0.7vw 0.7vw; /* Ajusta o preenchimento usando porcentagens da largura da tela */
+  font-size: 0.7vw; /* Define o tamanho da fonte em relação à largura da tela */
+  border-radius: 2vw; /* Define a borda arredondada usando porcentagem da largura da tela */
+  /* Outros estilos... */
+}
+
+/* Media query para ajustar os botões em telas menores */
+@media screen and (max-width: 768px) {
+  .button-overlay1 button,
+  .button-overlay2 button {
+    padding: 8px 16px; /* Ajusta o preenchimento para telas menores */
+    font-size: 14px; /* Define o tamanho da fonte para telas menores */
+    border-radius: 5px; /* Define a borda arredondada para telas menores */
+    /* Outros estilos... */
+  }
+}

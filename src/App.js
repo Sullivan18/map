@@ -1,74 +1,131 @@
-import React, { useState } from 'react';
-import './style.css'; // Arquivo de estilos CSS
-import fullImage from './images/map.png'; // Importe a imagem completa
+import React, { Component } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import './Carousel.css';
+import map1 from './images/mapalt 1.png';
+import map2 from './images/mapalt 2.png';
+import './Carousel.css';
+import image1 from './images/map1.png'
 
-function App() {
-  const [revealed, setRevealed] = useState(false);
-  const [showModal2, setShowModal2] = useState(false);
-  const [showModal3, setShowModal3] = useState(false);
-  const [hideAdditionalButtons, setHideAdditionalButtons] = useState(false);
 
-  const handleButtonClick = () => {
-    setRevealed(!revealed);
-    setHideAdditionalButtons(!hideAdditionalButtons); // Alternando a visibilidade dos botões adicionais
-  };
 
-  const handleButton2Click = () => {
-    setShowModal2(true);
-  };
+class App extends Component {
+  componentDidMount() {
+    window.addEventListener('wheel', this.handleScroll, { passive: false });
+  }
 
-  const handleButton3Click = () => {
-    setShowModal3(true);
-  };
+  componentWillUnmount() {
+    window.removeEventListener('wheel', this.handleScroll);
+  }
 
-  const handleCloseModal = (modal) => {
-    if (modal === 'modal2') {
-      setShowModal2(false);
-    } else if (modal === 'modal3') {
-      setShowModal3(false);
+  handleScroll = (event) => {
+    const slider = this.slider;
+    const deltaY = event.deltaY;
+
+    if (Math.abs(deltaY) > 20) {
+      if (deltaY > 0) {
+        slider.slickNext();
+      } else {
+        slider.slickPrev();
+      }
+      event.preventDefault();
     }
   };
 
-  return (
-    <div className="container">
-      <div className="image-container">
-        <div className={`image ${revealed ? 'revealed' : ''}`} style={{ backgroundImage: `url(${fullImage})` }}></div>
+  constructor(props) {
+    super(props);
+    this.state = {
+      showPopup: false,
+      slideUp: false,
+      popupContent: [
+        {
+          text: "Conteúdo do Popup Aqui..",
+          imageUrl1: image1
+        },
+        {
+          text: "Conteúdo do Popup2 Aqui..",
+          imageUrl1: image1
+        }
+      ],
+      activePopupIndex: 0
+    };
+  }
+  
+
+
+
+  handleBeforeChange = (oldIndex, newIndex) => {
+    this.setState({ activeSlideIndex: newIndex, showPopup: false });
+  };
+
+  handleShowPopup = () => {
+    this.setState({ showPopup: true });
+  };
+
+  handleClosePopup = () => {
+    this.setState({ slideUp: true }); // Ativa a animação slide-up
+  
+    // Atraso para exibir a animação antes de fechar o popup
+    setTimeout(() => {
+      this.setState({ showPopup: false, slideUp: false });
+    }, 300); // Ajuste o tempo conforme a duração da transição em CSS
+  };
+
+  handleButtonClick = (index) => {
+    this.setState({ showPopup: true, activePopupIndex: index });
+  };
+
+  render() {
+    const settings = {
+      dots: false,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: false,
+      autoplaySpeed: 3000,
+      cssEase: 'linear',
+      beforeChange: this.handleBeforeChange,
+    };
+
+    return (
+      <div className="carousel-wrapper">
+        <Slider ref={(slider) => (this.slider = slider)} {...settings}>
+          <div className="carousel-item">
+            <img src={map1} alt="Descrição da Imagem 1" />
+            <div className="button-overlay1">
+              <button onClick={() => this.handleButtonClick(0)}>Mostrar</button>
+            </div>
+          </div>
+          <div className="carousel-item">
+            <img src={map2} alt="Descrição da Imagem 2" />
+            <div className="button-overlay2">
+              <button onClick={() => this.handleButtonClick(1)}>Mostrar</button>
+            </div>
+          </div>
+        </Slider>
+
+        {this.state.showPopup && (
+          <div className={`popup-overlay ${this.state.slideUp ? 'slide-down' : 'slide-up'}`} onClick={this.handleClosePopup}>
+            <div className={`popup ${this.state.showPopup ? '' : 'popup-hidden'}`} onClick={(e) => e.stopPropagation()}>
+              <span className="close" onClick={this.handleClosePopup}>&times;</span>
+              <div className="popup-content">
+                <p>{this.state.popupContent[this.state.activePopupIndex].text}</p>
+                <img
+                  src={this.state.popupContent[this.state.activePopupIndex].imageUrl1}
+                  alt="Descrição da Imagem"
+                  className="popup-image" // Adicionando a classe "popup-image" à tag img
+                />
+              </div>
+            </div>
+          </div>
+)}
+
+
       </div>
-      <button className="reveal-button" onClick={handleButtonClick}>
-        {/* Conteúdo do botão principal */}
-      </button>
-      {!hideAdditionalButtons && (
-        <>
-          <button className={`additional-button ${hideAdditionalButtons ? 'hidden' : ''}`} onClick={handleButton2Click}>
-  {/* Conteúdo do botão adicional 1 */}
-</button>
-<button className={`additional-button ${hideAdditionalButtons ? 'hidden' : ''}`} onClick={handleButton3Click}>
-  {/* Conteúdo do botão adicional 2 */}
-</button>
-        </>
-      )}
-
-      {/* Modal para o botão 2 */}
-      {showModal2 && (
-        <div className="modal show">
-          <div className="modal-content">
-            <span className="close" onClick={() => handleCloseModal('modal2')}>&times;</span>
-            <p>Conteúdo do Pop-up do Botão 2</p>
-          </div>
-        </div>
-      )}
-
-      {/* Modal para o botão 3 */}
-      {showModal3 && (
-        <div className="modal show">
-          <div className="modal-content">
-            <span className="close" onClick={() => handleCloseModal('modal3')}>&times;</span>
-            <p>Conteúdo do Pop-up do Botão 3</p>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
