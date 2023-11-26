@@ -10,15 +10,22 @@ import image1 from './images/img_popup.png';
 
 class App extends Component {
   componentDidMount() {
-    window.addEventListener('wheel', this.handleScroll, { passive: false });
-    window.addEventListener('orientationchange', this.handleOrientationChange);
-    this.handleOrientationChange(); // Verificar a orientação ao carregar
+    const slider = this.slider;
+    if (slider) {
+      slider.innerSlider.list.addEventListener('wheel', this.handleScroll, { passive: false });
+      window.addEventListener('orientationchange', this.handleOrientationChange);
+      this.handleOrientationChange(); // Verificar a orientação ao carregar
+    }
   }
-
+  
   componentWillUnmount() {
-    window.removeEventListener('wheel', this.handleScroll);
-    window.removeEventListener('orientationchange', this.handleOrientationChange);
+    const slider = this.slider;
+    if (slider) {
+      slider.innerSlider.list.removeEventListener('wheel', this.handleScroll);
+      window.removeEventListener('orientationchange', this.handleOrientationChange);
+    }
   }
+  
 
   handleOrientationChange = () => {
     const orientation = window.orientation;
@@ -35,18 +42,26 @@ class App extends Component {
   }
 
   handleScroll = (event) => {
-    const slider = this.slider;
     const deltaY = event.deltaY;
-
-    if (Math.abs(deltaY) > 20) {
-      if (deltaY > 0) {
-        slider.slickNext();
-      } else {
-        slider.slickPrev();
+    const { showPopup } = this.state;
+  
+    if (!showPopup && Math.abs(deltaY) > 20) {
+      const slider = this.slider;
+      if (slider) {
+        if (deltaY > 0) {
+          slider.slickPrev && slider.slickPrev();
+        } else {
+          slider.slickNext && slider.slickNext();
+        }
+        event.stopPropagation();
+        event.preventDefault();
       }
-      event.preventDefault();
     }
   };
+  
+  
+  
+  
 
   constructor(props) {
     super(props);
