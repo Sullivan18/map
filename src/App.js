@@ -6,11 +6,26 @@ import './Carousel.css';
 import map1 from './images/mapalt 1.png';
 import map2 from './images/mapalt 2.png';
 import './Carousel.css';
-import image1 from './images/img_popup.png'
-
-
+import image1 from './images/img_popup.png';
 
 class App extends Component {
+  componentDidMount() {
+    window.addEventListener('wheel', this.handleScroll, { passive: false });
+    window.addEventListener('orientationchange', this.handleOrientationChange);
+    this.handleOrientationChange(); // Verificar a orientação ao carregar
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('wheel', this.handleScroll);
+    window.removeEventListener('orientationchange', this.handleOrientationChange);
+  }
+
+  handleOrientationChange = () => {
+    const orientation = window.orientation;
+    if (orientation === 0 || orientation === 180) {
+      alert('Por favor, gire o celular para utilizar o site na horizontal.');
+    }
+  };
   componentDidMount() {
     window.addEventListener('wheel', this.handleScroll, { passive: false });
   }
