@@ -6,7 +6,7 @@ import './Carousel.css';
 import map1 from './images/mapalt 1.png';
 import map2 from './images/mapalt 2.png';
 import './Carousel.css';
-import image1 from './images/map1.png'
+import image1 from './images/img_popup.png'
 
 
 
@@ -40,11 +40,11 @@ class App extends Component {
       slideUp: false,
       popupContent: [
         {
-          text: "Popup content here..",
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus viverra pulvinar ipsum, vel facilisis erat varius eget. Donec quis magna ac ex tristique iaculis. Nam aliquam tellus enim, commodo mattis velit accumsan vitae. Fusce cursus iaculis velit a dictum. Quisque et convallis elit, eu pellentesque dolor. In auctor ac elit eu ultricies. Nullam vehicula blandit ullamcorper. Suspendisse ultricies ac ante non eleifend. Aenean tincidunt tincidunt pulvinar. Nulla sit amet feugiat quam. Suspendisse potenti. Proin tincidunt vitae velit non imperdiet. Vivamus ac interdum neque. Quisque cursus, lorem pharetra volutpat pellentesque, erat magna bibendum ante, vehicula ultricies leo nisl in augue. Sed at ligula semper, tincidunt erat ac, lacinia lacus. Nulla vitae tortor nisl.",
           imageUrl1: image1
         },
         {
-          text: "Popup content here..",
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus viverra pulvinar ipsum, vel facilisis erat varius eget. Donec quis magna ac ex tristique iaculis. Nam aliquam tellus enim, commodo mattis velit accumsan vitae. Fusce cursus iaculis velit a dictum. Quisque et convallis elit, eu pellentesque dolor. In auctor ac elit eu ultricies. Nullam vehicula blandit ullamcorper. Suspendisse ultricies ac ante non eleifend. Aenean tincidunt tincidunt pulvinar. Nulla sit amet feugiat quam. Suspendisse potenti. Proin tincidunt vitae velit non imperdiet. Vivamus ac interdum neque. Quisque cursus, lorem pharetra volutpat pellentesque, erat magna bibendum ante, vehicula ultricies leo nisl in augue. Sed at ligula semper, tincidunt erat ac, lacinia lacus. Nulla vitae tortor nisl.",
           imageUrl1: image1
         }
       ],

@@ -138,7 +138,7 @@ body {
 }
 
 .popup {
-  background-color: white;
+  background-color: rgb(179, 179, 179);
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -200,11 +200,13 @@ body {
 }
 
 .popup-image {
-  max-width: 60%; /* Define a largura máxima como 100% do contêiner */
-  max-height: 70vh; /* Define a altura máxima como 80% da altura da janela de visualização */
-  display: block; /* Define a imagem como um bloco para aplicar largura e altura */
-  margin: 0 auto; /* Centraliza horizontalmente a imagem */
+  max-width: 60%;
+  max-height: 70vh;
+  display: block;
+  margin: 0; /* Remova 'margin: 0 auto;' e adicione a propriedade abaixo */
+  margin-right: auto; /* Define a margem direita como automática para posicionar no canto esquerdo */
 }
+
 
 .button-overlay1 button,
 .button-overlay2 button {
@@ -224,3 +226,43 @@ body {
     /* Outros estilos... */
   }
 }
+
+.popup-content {
+  display: flex;
+  align-items: left; /* Centraliza verticalmente o conteúdo */
+}
+
+.popup-content img {
+  max-width: 70%; /* Define o tamanho máximo da imagem */
+  align-self: flex-start; /* Isso alinha a imagem à esquerda */
+}
+
+.popup-content p {
+  flex: 1; /* Isso faz o texto ocupar o espaço restante */
+  text-align: left; /* Alinha o texto à esquerda */
+  margin-left: 20px; /* Espaçamento entre o texto e a imagem */
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: #aaa;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.close:hover {
+  color: #fff;
+  background-color: #e53935;
+  border-color: #e53935;
+}
+
