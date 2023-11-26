@@ -40,11 +40,11 @@ class App extends Component {
       slideUp: false,
       popupContent: [
         {
-          text: "Conteúdo do Popup Aqui..",
+          text: "Popup content here..",
           imageUrl1: image1
         },
         {
-          text: "Conteúdo do Popup2 Aqui..",
+          text: "Popup content here..",
           imageUrl1: image1
         }
       ],
@@ -95,13 +95,13 @@ class App extends Component {
           <div className="carousel-item">
             <img src={map1} alt="Descrição da Imagem 1" />
             <div className="button-overlay1">
-              <button onClick={() => this.handleButtonClick(0)}>Mostrar</button>
+              <button onClick={() => this.handleButtonClick(0)}>Show</button>
             </div>
           </div>
           <div className="carousel-item">
             <img src={map2} alt="Descrição da Imagem 2" />
             <div className="button-overlay2">
-              <button onClick={() => this.handleButtonClick(1)}>Mostrar</button>
+              <button onClick={() => this.handleButtonClick(1)}>Show</button>
             </div>
           </div>
         </Slider>
